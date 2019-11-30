@@ -31,16 +31,21 @@ import sk.itlearning.wf.xml.Weatherdata;
 
 public class Main {
 
+	/**
+	 * Creates a basic GUI window with a date-time/forecast-temperature chart
+	 */
 	public static void main(String[] args) {
 		JFrame gui = new JFrame("Temperature Forecast");
 		gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		gui.setBounds(50, 50, 600, 500);
 
+		XYDataset dataset = createDataSet();
+		
 	    JFreeChart chart = ChartFactory.createTimeSeriesChart(
 	            "Temperature Forecast",
 	            "Datetime",
 	            "Temperature",
-	            createDataSet());
+	            dataset);
 	    
 		ChartPanel chartPanel = new ChartPanel(chart);
 
@@ -48,6 +53,9 @@ public class Main {
 		gui.setVisible(true);
 	}
 
+	/**
+	 * Get processed data from API and put it to XYDataset
+	 */
 	private static XYDataset createDataSet() {
 		TimeSeriesCollection dataset = new TimeSeriesCollection();
 		TimeSeries series = new TimeSeries("Datetime");
@@ -62,6 +70,10 @@ public class Main {
 		return dataset;
 	}
 
+	/**
+	 * 
+	 * Get raw data from API and process it to get desired weather details
+	 */
 	private static Map<LocalDateTime, BigDecimal> getTemperatureData() {
 
 		// initialize data map for processed data
@@ -102,8 +114,12 @@ public class Main {
 		return timeToTemperatureMap;
 	}
 
+	/**
+	 * Convert XML date time to LocalDateTime instance  
+	 */
 	private static LocalDateTime toLocalDateTime(XMLGregorianCalendar xmlDate) {
 		Date date = xmlDate.toGregorianCalendar().getTime();
 		return LocalDateTime.ofInstant(date.toInstant(), ZoneOffset.UTC);
 	}
+	
 }
