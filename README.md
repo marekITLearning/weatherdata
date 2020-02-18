@@ -1,2 +1,2 @@
 # weatherdata
-Demo to get data with REST API client and display the data in a chart in Swing gui
+Demo to get data with REST API client and display it in Swing GUI chart
