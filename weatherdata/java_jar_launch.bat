@@ -1,1 +1,1 @@
-C:\devel\jdk-11.0.8\bin\java -jar C:\devel\maven\repo\sk\itlearning\java\weatherdata\1.0-SNAPSHOT\weatherdata-1.0-SNAPSHOT.jar
+C:\devel\jdk-11.0.8\bin\java -jar target\weatherdata-1.0-SNAPSHOT-jar-with-dependencies.jar
